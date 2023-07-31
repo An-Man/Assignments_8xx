@@ -42,7 +42,7 @@ int main()
     std::vector<int> vect10(10);
     std::vector<int> vect1000(1000);
     std::vector<int> vect100000000(100000000);
-    std::list<int> list10 = {};
+    std::list list10 {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     std::list<int> list1000(1000);
     std::array<int, 10> arr10 = {};
     std::array<int, 1000> arr1000 = {};
@@ -53,12 +53,12 @@ int main()
     std::cout << sizeof(vect10) << ", " << sizeof(vect1000) << '\n'; // same size
     std::cout << sizeof(arr10) << ", " << sizeof(arr1000) << '\n';  // sizes 40, 4000
 
-    std::cout << std::boolalpha << check_container(vect10) << '\n';
+    std::cout << std::boolalpha << check_container(vect10) << '\n';         // true for vectors
     std::cout << std::boolalpha << check_container(vect1000) << '\n';
     std::cout << std::boolalpha << check_container(vect100000000) << '\n';
-    std::cout << std::boolalpha << check_container(list10) << '\n';
-    std::cout << std::boolalpha << check_container(list1000) << '\n';
-    std::cout << std::boolalpha << check_container(arr10) << '\n';
+    std::cout << std::boolalpha << check_container(list10) << '\n';         // false
+    std::cout << std::boolalpha << check_container(list1000) << '\n';       // false
+    std::cout << std::boolalpha << check_container(arr10) << '\n';          // true for the rest
     std::cout << std::boolalpha << check_container(arr1000) << '\n';
     std::cout << std::boolalpha << check_container(deq10) << '\n';
     std::cout << std::boolalpha << check_container(deq10) << '\n';
