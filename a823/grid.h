@@ -29,11 +29,17 @@ class Grid
         using difference_type = typename storage_type::difference_type;
         using size_type = typename storage_type::size_type;
         
-        Grid<T>() : data {2,4,6,3,7,4,1,8,9}, size {3,3} {}
+        Grid() : data {2,4,6,3,7,4,1,8,9}, size {3,3} {}
 
-        Grid<T>(std::size_t input_size) : 
+        Grid(std::size_t input_size) : 
             data(input_size*input_size),
             size {input_size, input_size} {}
+
+        Grid(const Grid& other) = default; // use copy constructor of std::vector (RAII type)
+        
+        Grid(Grid&& other) = default;
+
+        ~Grid() = default;
 
         void print_data() {
             for (int i = 0; i < (size.height*size.width); ++i) {
