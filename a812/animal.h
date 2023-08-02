@@ -9,7 +9,9 @@
 class Animal
 {
     public:
-        virtual void make_sound() = 0;
+        virtual void make_sound() {
+            std::cout << "Bonk!\n";
+        }
 
         virtual bool is_fluffy() const {
             return false;
@@ -22,7 +24,7 @@ class Animal
         virtual ~Animal() = default;
 
         std::string name {};
-
+        std::string species {};
 
     private:
 };
@@ -33,6 +35,7 @@ class Cow : public Animal
         
         Cow() {
             name = "Dairy-Mary";
+            species = "Cow";
         }
 
         void make_sound() final {
@@ -54,6 +57,7 @@ class Pig : public Animal
         
         Pig() {
             name = "Peppa";
+            species = "Pig";
         }
 
         void make_sound() final {
@@ -73,6 +77,7 @@ class Dog : public Animal
 
         Dog() {
             name = "Milou";
+            species = "Dog";
         }
 
         void make_sound() final {
@@ -89,39 +94,17 @@ class Dog : public Animal
         
 };
 
-void make_sound(Animal& animal) {
-    animal.make_sound();
-}
+void make_sound(Animal& animal);
 
-void print_eats_grass(Animal& animal) {
-    std::cout << "Eats grass: " 
-              << std::boolalpha
-              << animal.eats_grass() << '\n';
-}
+void print_eats_grass(Animal& animal);
 
-void print_is_fluffy(Animal& animal) {
-    std::cout << "Is fluffy: " 
-              << std::boolalpha
-              << animal.eats_grass() << '\n';
-}
+void print_is_fluffy(Animal& animal);
 
-void print_stats(Animal& animal) {
-    std::cout << "Name: " << animal.name << '\n'
-              << "Makes sound: ";
-    animal.make_sound();
-    std::cout << "Fluffy: " << std::boolalpha << animal.is_fluffy() << '\n'
-              << "Eats grass: " << animal.eats_grass() << '\n';
-}
+void print_stats(Animal& animal);
 
-void print_animals(const std::vector<std::unique_ptr<Animal>>& animals)
-{
-    for (auto& a : animals)
-    {
-        std::cout << a->name << '\n';
-    }
-}
+void print_animals(const std::vector<std::unique_ptr<Animal>>& animals);
 
-void read_animals_from_file(const std::vector<std::unique_ptr<Animal>>& animals);
+void read_animals_from_file(std::vector<std::unique_ptr<Animal>>& animals);
 
 
 
