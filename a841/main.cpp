@@ -6,14 +6,13 @@
 
 */
 
-#include "container.h"
+#include "include/container.h"
 
 int main()
 {
     Array<int> arr(6);
-    Array<int> arr2;
+    Array<int> arr2(8);
 
-    std::cout << arr[0] << '\n';
-    std::cout << arr2[0] << '\n';
+    // std::cout << arr[0] << '\n';
 
 }

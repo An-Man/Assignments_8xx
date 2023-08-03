@@ -7,7 +7,7 @@
 template <typename T>
 class Array
 {
-        std::size_t length {};
+        std::size_t length {10};
         T* array {};
 
     public:
@@ -20,9 +20,9 @@ class Array
         using difference_type = long int;
         using size_type = std::size_t;
 
-        Array() {
+        Array() {                               // default constructor
             array = new T[length] {};
-        }                                       // default constructor
+        }                                       
 
         Array(std::size_t input_length) {       // with length as parameter
             array = new T[length] {};
