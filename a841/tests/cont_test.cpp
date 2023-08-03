@@ -21,7 +21,7 @@
 #include "../include/container.h"
 #include "../include/counter.h"
 
-TEST_CASE("Constructors, destructor and assignment operators") {
+TEST_CASE("Constructors and assignment operators") {
 
     SUBCASE("Default constructors"){
         Array<int> arr;
@@ -65,11 +65,6 @@ TEST_CASE("Constructors, destructor and assignment operators") {
         CHECK(arr9.size() == 0);
         CHECK(arr10.size() == 10);
     }
-
-    SUBCASE("Destructor") {
-        Array<int> arppa(10);
-        arppa.~Array();
-    }
 }
 
 TEST_CASE("Access element") {
@@ -82,7 +77,7 @@ TEST_CASE("Access element") {
     CHECK(arr11[2] == 0);
 }
 
-TEST_CASE("Counter, using counter.h class Counter") {
+TEST_CASE("Counter, using class Counter from counter.h") {
     Array<Counter> three(3);  // three counters
     Array<Counter> two(2);    // two counters
 
@@ -95,10 +90,8 @@ TEST_CASE("Counter, using counter.h class Counter") {
     Array<Counter> move_two(std::move(two)); 
 
     CHECK(Counter::count == 5);
+}
 
-    three.~Array();
-    two.~Array();
-    move_two.~Array();
-
+TEST_CASE("Counter after calling of destructors") {
     CHECK(Counter::count == 0);
 }

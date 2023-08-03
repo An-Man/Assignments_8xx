@@ -12,13 +12,15 @@ class Array
 
     public:
 
-        using value_type = T;
-        using reference = value_type&;
-        using const_reference = const value_type&;
-        using iterator = value_type*;
-        using const_iterator = const value_type*;
-        using difference_type = long int;
-        using size_type = std::size_t;
+        using value_type        = T;
+        using reference         = value_type&;
+        using const_reference   = const value_type&;
+        using pointer           = T*;
+        using const_pointer     = const T*;
+        using iterator          = pointer;
+        using const_iterator    = const_pointer;
+        using difference_type   = std::size_t;
+        using size_type         = std::size_t;
 
         Array() {                               // default constructor
             array = new T[length] {};
