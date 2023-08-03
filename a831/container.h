@@ -12,24 +12,34 @@ class Array
 
     public:
 
-        using value_type = T;
-        using reference = value_type&;
-        using const_reference = const value_type&;
-        using iterator = value_type*;
-        using const_iterator = const value_type*;
-        using difference_type = long int;
-        using size_type = std::size_t;
+        using value_type        = T;
+        using reference         = value_type&;
+        using const_reference   = const value_type&;
+        using pointer           = T*;
+        using const_pointer     = const T*;
+        using iterator          = pointer;
+        using const_iterator    = const_pointer;
+        using difference_type   = std::size_t;
+        using size_type         = std::size_t;
 
-        Array() {
+        Array() {                               // default constructor
             array = new T[length] {};
-        }                                       // default constructor
+        }                                       
 
         Array(std::size_t input_length) {       // with length as parameter
-            array = new T[length] {};
             length = input_length;
+            array = new T[length] {};
         }
 
-        Array(const Array& other) {     // copy constructor
+        Array(std::size_t input_length, T fill) {   // with a value to fill array
+            length = input_length;
+            array = new T[length] {};
+            for (std::size_t i = 0; i < length; ++i) {
+                array[i] = fill;
+            }
+        }
+
+        Array(const Array& other) {             // copy constructor
             length = other.length;
             array = new T[length] {};
             for (std::size_t i = 0; i < length; ++i) {
@@ -48,13 +58,13 @@ class Array
             array = new T[length]{};
 
             for (std::size_t i = 0; i < length; ++i) {
-            array[i] = other.array[i];
+                array[i] = other.array[i];
             }
 
             return *this;
         }
 
-        Array(Array&& other) {          // move constructor
+        Array(Array&& other) {              // move constructor
             length = other.length;
             array = other.array;
             other.length = 0;
@@ -76,15 +86,32 @@ class Array
             return *this;
         }
 
+        ~Array() {                          // destructor
+            delete[] array;
+            array = nullptr;
+        }
+
+        iterator begin() {
+            return array;
+        }
+
+        iterator end() {
+            return &array[length];
+        }
+
+        const_iterator begin() const {
+            return array;
+        } 
+
+        const_iterator end() const {
+            return &array[length];
+        }
+
         T& operator[](std::size_t index) {
             return array[index];
         }
 
-        ~Array() {
-            delete[] array;
-        }
-
-        std::size_t get_length() const {
+        std::size_t size() const {
             return length;
         }
 };
