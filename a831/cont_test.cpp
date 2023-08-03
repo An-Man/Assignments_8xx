@@ -11,6 +11,14 @@ TEST_CASE("Constructors and assignment operators") {
         CHECK(arr2.size() == 5);
     }
 
+    SUBCASE("Fill constructor") {
+        Array<int> arr_f(4, 16);
+
+        for (auto a : arr_f) {
+            CHECK(a == 16);
+        }
+    }
+
     SUBCASE("Constructor, copy") {
         Array<int> arr3;
         Array<int> arr4(arr3);
@@ -30,11 +38,12 @@ TEST_CASE("Constructors and assignment operators") {
     }
 
     SUBCASE("Constructor, move") {
-        Array<int> arr7(10);
+        Array<int> arr7(10, 2);
         Array<int> arr8(std::move(arr7));
 
         CHECK(arr7.size() == 0);
         CHECK(arr8.size() == 10);
+        CHECK(arr8[5] == 2);
     }
 
     SUBCASE("Move assign operator") {

@@ -31,7 +31,7 @@ class Array
             array = new T[length] {};
         }
 
-        Array(std::size_t input_length, T fill) {   // with a value to fill array
+        Array(std::size_t input_length, T fill) {  // "fill constructor"
             length = input_length;
             array = new T[length] {};
             for (std::size_t i = 0; i < length; ++i) {
