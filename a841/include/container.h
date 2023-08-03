@@ -7,7 +7,7 @@
 template <typename T>
 class Array
 {
-        std::size_t length {10};
+        std::size_t length {};
         T* array {};
 
     public:
@@ -25,11 +25,11 @@ class Array
         }                                       
 
         Array(std::size_t input_length) {       // with length as parameter
-            array = new T[length] {};
             length = input_length;
+            array = new T[length] {};
         }
 
-        Array(const Array& other) {     // copy constructor
+        Array(const Array& other) {             // copy constructor
             length = other.length;
             array = new T[length] {};
             for (std::size_t i = 0; i < length; ++i) {
@@ -48,7 +48,7 @@ class Array
             array = new T[length]{};
 
             for (std::size_t i = 0; i < length; ++i) {
-            array[i] = other.array[i];
+                array[i] = other.array[i];
             }
 
             return *this;
@@ -82,9 +82,10 @@ class Array
 
         ~Array() {
             delete[] array;
+            array = nullptr;
         }
 
-        std::size_t get_length() const {
+        std::size_t size() const {
             return length;
         }
 };

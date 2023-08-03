@@ -2,10 +2,8 @@ cmake_minimum_required(VERSION 3.15)
 
 project(cont_test)
 
-add_compile_options(-fsanitize=address)
-add_link_options(-fsanitize=address)
-
-# set(CMAKE_BUILD_TYPE Debug)
+# add_compile_options(-fsanitize=address)
+# add_link_options(-fsanitize=address)
 
 add_executable(${PROJECT_NAME} cont_test.cpp)
 
