@@ -75,3 +75,58 @@ TEST_CASE("Iterator") {
         CHECK(*it == 10);
     }
 }
+
+TEST_CASE("Swap") {
+    Array<int> arr_a(3, 6);  // 6,6,6
+    Array<int> arr_b(3, 4);  // 4,4,4
+    
+    arr_a.swap(arr_b);
+
+    for (auto a : arr_a) {
+    CHECK(a == 4);
+    }
+
+    for (auto a : arr_b) {
+    CHECK(a == 6);
+    }
+
+    swap(arr_a, arr_b);     // friend function swap a & b
+
+    for (auto a : arr_a) {
+    CHECK(a == 6);
+    }
+
+    for (auto a : arr_b) {
+    CHECK(a == 4);
+    }
+}
+
+TEST_CASE("Bool equals-operator overload") {
+    Array<int> arr_a(3, 6);  // 6,6,6
+    Array<int> arr_b(3, 6);  
+    Array<int> arr_c(3, 7);  // 7,7,7
+    Array<int> arr_d(4, 7);  // 7,7,7,7
+    CHECK(arr_a == arr_b);
+
+    bool equal {arr_a == arr_c};
+    CHECK(equal == false);
+    
+    equal = (arr_c == arr_d);
+    CHECK(equal == false);
+
+    bool unequal {arr_c != arr_d};
+    CHECK(unequal == true);
+}
+
+TEST_CASE("Size functions and empty") {
+    Array<int> arr_a(3, 6);  // 6,6,6
+    Array<int> arr_b(6, 6);
+
+    CHECK(arr_a.size() == 3);
+    CHECK(arr_b.size() == 6);
+
+    CHECK(arr_a.max_size() == std::numeric_limits<std::size_t>::max());
+
+    Array<int> arr_c;
+    CHECK(arr_c.empty() == true);
+}
