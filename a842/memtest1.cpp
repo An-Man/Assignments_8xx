@@ -2,7 +2,7 @@
 #include "doctest.h"
 #include "memerror1.h"
 
-TEST_CASE(" FAIL MEMERROR 1") {
+TEST_CASE(" FIX MEMERROR 1") {
     
     large_object a;
     large_object b = a;
